@@ -216,8 +216,12 @@ function MOI.get(m::MosekModel, p::MOI.RawParameter)
     end
 end
 
+MOI.supports(::MosekModel, ::MOI.Silent) = true
 function MOI.set(model::MosekModel, ::MOI.Silent, value::Bool)
     MOI.set(model, MOI.RawParameter("QUIET"), value)
+end
+function MOI.get(model::MosekModel, ::MOI.Silent)
+    MOI.get(model, MOI.RawParameter("QUIET"))
 end
 
 export Mosek
